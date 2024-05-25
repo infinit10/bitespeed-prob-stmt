@@ -1,0 +1,15 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const app = express();
+const PORT = 3000;
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.listen(PORT, (error) => {
+  if (error) {
+    console.error("Error while starting server", error);
+  }
+  console.log(`Server listening on ${PORT}`);
+});
