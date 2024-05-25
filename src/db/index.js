@@ -1,5 +1,6 @@
 const path = require('node:path');
 const { Sequelize } =  require('sequelize');
+const { loadModels } = require('./models');
 
 let sequelize;
 
@@ -11,6 +12,8 @@ async function initDBConnection() {
   
   try {
     await sequelize.authenticate();
+    loadModels(sequelize);
+    await sequelize.sync();
   } catch (error) {
     console.error("Error while initializing the connection", error);
     throw error;
