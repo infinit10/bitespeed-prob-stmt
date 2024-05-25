@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const { initDBConnection } = require('./db');
+const { loadRoutes } = require('./routes');
 
 async function bootstrap() {
   await initDBConnection();
@@ -12,6 +13,7 @@ async function bootstrap() {
   
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
+  loadRoutes(app);
 
   app.listen(PORT, (error) => {
     if (error) {
