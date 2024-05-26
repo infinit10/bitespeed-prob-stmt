@@ -7,7 +7,13 @@ const modelName = 'contacts';
 module.exports.createContact = async function createContact(body) {
   const { email, phoneNumber } = body;
 
-  if (!email && !phoneNumber) return { success: false, statusCode: 400 };
+  if (!email && !phoneNumber) {
+    return {
+      success: false,
+      statusCode: 400,
+      message: 'Pass atleast one of email or phoneNumber',
+    };
+  }
 
   const contactModel = getModel(modelName);
   const existingContact = await contactModel.findAll({
@@ -63,7 +69,11 @@ module.exports.createContact = async function createContact(body) {
     }
   }
 
-  return { success: true, statusCode: 201 };
+  return {
+    success: true,
+    statusCode: 201,
+    message: 'Contact saved successfully',
+  };
 };
 
 module.exports.contactDetails = async function contactDetails(payload) {

@@ -7,8 +7,8 @@ router.post('/create', async (req, res) => {
   const { body } = req;
 
   try {
-    const { success, statusCode } = await contactService.createContact(body);
-    writeResponse(res, { success, statusCode, message: 'Contact saved successfully' })
+    const { success, statusCode, message } = await contactService.createContact(body);
+    writeResponse(res, { success, statusCode, message })
   } catch (error) {
     console.error(error);
     res.sendStatus(500);

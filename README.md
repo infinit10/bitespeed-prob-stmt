@@ -3,6 +3,7 @@
 - `/src`: Root folder of application.
   - `/src/index.js`: The server bootstrap file.
 - `/db`: Handles the database connection logic and model definitions.
+  - Using SQLite as the database. For CLI operations refer to `https://sqlite.org/cli.html`
 - `/routes`: Handles various routes defined in `.routes.js` files.
 - `/services`: Contains the business logic of the application.
 - `/utils`: Contains helper functions used throughout the project.
@@ -20,14 +21,9 @@ To get started with this project, follow these steps:
 
 Once the server is up and running, you can interact with the API to store and share contact information. Here are some of the available endpoints:
 
-- `/contacts`: 
-  - `GET`: Get all contacts.
+- `/contacts/create`: 
   - `POST`: Add a new contact.
-- `/contacts/:id`: 
-  - `GET`: Get a specific contact by ID.
-  - `PUT`: Update a contact by ID.
-  - `DELETE`: Delete a contact by ID.
-- `/contacts/:id/share`: 
-  - `POST`: Share contact information with linked contacts.
-
-Make sure to check the API documentation or the codebase for more detailed information on available endpoints and their usage.
+  - Request body (JSON): `{ "email": "string", "phoneNumber": "string" }`
+- `/contacts/identify`:
+  - `POST`: Get the primary contact and details of its linked contacts
+  - Request body (JSON): `{ "email": "string", "phoneNumber": "string" }` 
